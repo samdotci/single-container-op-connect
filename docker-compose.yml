@@ -1,8 +1,8 @@
 version: "3"
 services:
   onepassword:
-    container_name: ghcr.io/samdotci/single-container-op-connect
-    image: samdotci/onepassword
+    container_name: onepassword
+    image: ghcr.io/samdotci/single-container-op-connect
     restart: unless-stopped
     networks:
       - traefik_net

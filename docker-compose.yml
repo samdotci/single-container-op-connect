@@ -1,0 +1,23 @@
+version: "3"
+services:
+  onepassword:
+    container_name: onepassword
+    image: samdotci/onepassword
+    restart: unless-stopped
+    networks:
+      - traefik_net
+    env_file: .env
+    volumes:
+      - /opt/onepassword/home:/home/opuser/.op/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.onepassword.rule=Host(`op.${DOMAIN}`)"
+      - "traefik.http.routers.onepassword.entrypoints=https"
+      - "traefik.http.routers.onepassword.tls=true"
+      - "traefik.http.routers.onepassword.tls.certresolver=myresolver"
+      - "traefik.http.services.onepassword.loadbalancer.server.port=8080"
+      - "traefik.http.routers.onepassword.service=onepassword"
+
+networks:
+  traefik_net:
+    external: true

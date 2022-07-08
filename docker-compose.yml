@@ -1,7 +1,7 @@
 version: "3"
 services:
   onepassword:
-    container_name: onepassword
+    container_name: ghcr.io/samdotci/single-container-op-connect
     image: samdotci/onepassword
     restart: unless-stopped
     networks:
